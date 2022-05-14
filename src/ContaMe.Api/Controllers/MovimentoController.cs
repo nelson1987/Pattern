@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ContaMe.Domain.Movimentacao.Inclusao;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContaMe.Api.Controllers
@@ -11,5 +12,49 @@ namespace ContaMe.Api.Controllers
     [ApiController]
     public class MovimentoController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public MovimentoController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        [TimestampFilter]
+        [HttpPost]
+        public async Task<IActionResult> Buscar([FromBody] MovimentacaoInclusaoCommand command, 
+            [FromServices] ILogger<MovimentoController> log)
+        {
+            log.LogInformation("[Entrada] Metodo Buscar");
+            var result = await _mediator.Send(command);
+
+            if(result.IsSucess)
+                return StatusCode((int)result.StatusCode, result.Data);
+            log.LogInformation("[Saída] Erro: Metodo Buscar");
+            return StatusCode((int)result.StatusCode, new { erros = result.Data });
+        }
+    }
+
+    public class TimestampFilterAttribute : Attribute, IActionFilter, IAsyncActionFilter
+    {
+        public void OnActionExecuting(ActionExecutingContext context)
+        {
+            context.ActionDescriptor.RouteValues["timestamp"] = DateTime.Now.
+            ToString();
+        }
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
+            var ts = DateTime.Parse(context.ActionDescriptor.
+            RouteValues["timestamp"])
+            .AddHours(1)
+            .ToString();
+            context.HttpContext.Response.Headers["X-EXPIRY-TIMESTAMP"] = ts;
+        }
+        public async Task OnActionExecutionAsync(ActionExecutingContext
+        context, ActionExecutionDelegate next)
+        {
+            this.OnActionExecuting(context);
+            var resultContext = await next();
+            this.OnActionExecuted(resultContext);
+        }
     }
 }

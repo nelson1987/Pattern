@@ -1,15 +1,9 @@
 ﻿################################################################################
 # Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
 ################################################################################
-
-/.vs/VSWorkspaceState.json
-/.vs/slnx.sqlite
-/.vs/ProjectSettings.json
-/.vs/Pattern/v16/.suo
-/.vs/Pattern/v16
 /.vs
-/src/.vs/ContaMe/v16/.suo
-/src/.vs/ContaMe/v16
+/src/.vs
 /src/ContaMe.Api/obj
-/src/ContaMe.Api/Properties
 /src/ContaMe.Domain/obj
+/src/ContaMe.Api/bin
+/src/ContaMe.Domain/bin
