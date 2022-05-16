@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaMe.Domain", "ContaMe.Domain\ContaMe.Domain.csproj", "{A06A1C8A-815F-4B4D-BAA0-ECFCF365EE5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContaMe.Domain", "ContaMe.Domain\ContaMe.Domain.csproj", "{A06A1C8A-815F-4B4D-BAA0-ECFCF365EE5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaMe.Api", "ContaMe.Api\ContaMe.Api.csproj", "{3C8C7C21-EEB9-401A-A6FC-EE008178C451}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContaMe.Api", "ContaMe.Api\ContaMe.Api.csproj", "{3C8C7C21-EEB9-401A-A6FC-EE008178C451}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaMe.Domain.Tests", "..\tests\ContaMe.Domain.Tests\ContaMe.Domain.Tests.csproj", "{5BBCEA96-CF39-4425-8692-C98CBC6303C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3C8C7C21-EEB9-401A-A6FC-EE008178C451}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C8C7C21-EEB9-401A-A6FC-EE008178C451}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C8C7C21-EEB9-401A-A6FC-EE008178C451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BBCEA96-CF39-4425-8692-C98CBC6303C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BBCEA96-CF39-4425-8692-C98CBC6303C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BBCEA96-CF39-4425-8692-C98CBC6303C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BBCEA96-CF39-4425-8692-C98CBC6303C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

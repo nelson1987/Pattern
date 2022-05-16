@@ -21,13 +21,15 @@ namespace ContaMe.Api.Controllers
 
         [TimestampFilter]
         [HttpPost]
-        public async Task<IActionResult> Buscar([FromBody] MovimentacaoInclusaoCommand command, 
+        3
+        public async Task<IActionResult> Buscar([FromBody] MovimentacaoInclusaoCommand command,
+            [FromHeader] string partnerId,
             [FromServices] ILogger<MovimentoController> log)
         {
             log.LogInformation("[Entrada] Metodo Buscar");
             var result = await _mediator.Send(command);
 
-            if(result.IsSucess)
+            if (result.IsSucess)
                 return StatusCode((int)result.StatusCode, result.Data);
             log.LogInformation("[Saída] Erro: Metodo Buscar");
             return StatusCode((int)result.StatusCode, new { erros = result.Data });
@@ -52,6 +54,10 @@ namespace ContaMe.Api.Controllers
         public async Task OnActionExecutionAsync(ActionExecutingContext
         context, ActionExecutionDelegate next)
         {
+            if (context.ActionArguments.ContainsKey("partnerId"))
+            {
+            //    context.ActionArguments.
+            }
             this.OnActionExecuting(context);
             var resultContext = await next();
             this.OnActionExecuted(resultContext);
