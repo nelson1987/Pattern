@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
+using Mapster;
 
 namespace ContaMe.Api.Controllers
 {
@@ -21,12 +22,12 @@ namespace ContaMe.Api.Controllers
 
         [TimestampFilter]
         [HttpPost]
-        3
         public async Task<IActionResult> Buscar([FromBody] MovimentacaoInclusaoCommand command,
             [FromHeader] string partnerId,
             [FromServices] ILogger<MovimentoController> log)
         {
             log.LogInformation("[Entrada] Metodo Buscar");
+            var mapeamento = command.Adapt<MovimentacaoInclusaoCommandDTO>();
             var result = await _mediator.Send(command);
 
             if (result.IsSucess)
@@ -38,6 +39,11 @@ namespace ContaMe.Api.Controllers
 
     public class TimestampFilterAttribute : Attribute, IActionFilter, IAsyncActionFilter
     {
+        //public void OnActionException(ActionExceptionContext context)
+        //{
+        //    context.ActionDescriptor.RouteValues["timestamp"] = DateTime.Now.
+        //    ToString();
+        //}
         public void OnActionExecuting(ActionExecutingContext context)
         {
             context.ActionDescriptor.RouteValues["timestamp"] = DateTime.Now.
@@ -56,7 +62,7 @@ namespace ContaMe.Api.Controllers
         {
             if (context.ActionArguments.ContainsKey("partnerId"))
             {
-            //    context.ActionArguments.
+                //    context.ActionArguments.
             }
             this.OnActionExecuting(context);
             var resultContext = await next();

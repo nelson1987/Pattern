@@ -1,4 +1,6 @@
 using ContaMe.Domain.Extensions;
+using ContaMe.Domain.Movimentacao.Inclusao;
+using Mapster;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -39,6 +41,10 @@ namespace ContaMe.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ContaMe.Api v1"));
             }
+
+            TypeAdapterConfig<MovimentacaoInclusaoCommand, MovimentacaoInclusaoCommandDTO>.NewConfig()
+                            .Map(dest => dest.PartnerId, src => "Nação" + " " + "Rubro-Negra"+" " + src.PartnerId);
+            //https://github.com/MapsterMapper/Mapster/wiki/Fluent-API-Code-generation
 
             app.UseHttpsRedirection();
 
