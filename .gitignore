@@ -7,3 +7,9 @@
 /src/ContaMe.Domain/obj
 /src/ContaMe.Api/bin
 /src/ContaMe.Domain/bin
+/tests/ContaMe.Domain.Tests/bin/Debug/net5.0
+/tests/ContaMe.Domain.Tests/obj/Debug/net5.0
+*.json
+*.props
+*.cache
+*.targets
