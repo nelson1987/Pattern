@@ -1,0 +1,9 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+/.vs
+/src/.vs
+/src/ContaMe.Api/obj
+/src/ContaMe.Domain/obj
+/src/ContaMe.Api/bin
+/src/ContaMe.Domain/bin
